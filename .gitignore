@@ -14,3 +14,8 @@ Thumbs.db
 
 # ---- 本地私密配置（如有，请勿提交）----
 project.private.config.json
+
+# ---- 本地自托管后端运行时产物 ----
+local/server/.env
+local/server/uploads/
+local/server/node_modules/

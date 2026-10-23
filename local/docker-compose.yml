@@ -1,0 +1,40 @@
+# 一建备考小程序 · 本地自托管后端
+# 启动：在 yijian-miniprogram/local 目录执行  docker compose up -d
+# 会拉起：PostgreSQL（含 15 张表 + RLS + 种子数据）和 PostgREST（REST API）
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: yijian_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # 首次启动按文件名顺序执行 *.sql（00 角色 → 01 表结构 → 02/03/04 种子）
+      - ./sql:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  rest:
+    image: postgrest/postgrest:v12.0.2
+    container_name: yijian_rest
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "54321:3000"
+    environment:
+      PGRST_DB_URI: postgres://authenticator:authpass@db:5432/postgres
+      PGRST_DB_SCHEMAS: public
+      PGRST_DB_ANON_ROLE: anon
+      PGRST_JWT_SECRET: localdev-secret-please-change
+      PGRST_SERVER_PORT: 3000
+
+volumes:
+  pgdata:

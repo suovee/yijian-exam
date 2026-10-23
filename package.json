@@ -4,6 +4,7 @@
   "private": true,
   "description": "一级建造师备考小程序",
   "dependencies": {
-    "@tencent-ai/workbuddy-cloud-sdk": "dev"
+    "@tencent-ai/workbuddy-cloud-sdk": "dev",
+    "@supabase/supabase-js": "^2.45.0"
   }
 }

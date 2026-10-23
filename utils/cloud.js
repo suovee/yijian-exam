@@ -1,9 +1,9 @@
-const { publicConfig } = require('./config.js')
+const { USE_LOCAL, publicConfig } = require('./config.js')
 const { createDiagnosticWx } = require('./workbuddy-cloud-diagnostics.js')
 
+// ---------------- WorkBuddy 云模式 ----------------
 let cloud = null
-
-function getCloud() {
+function getWorkBuddyCloud() {
   if (cloud) return cloud
   const { createMiniProgramWorkBuddyCloud } = require('@tencent-ai/workbuddy-cloud-sdk/miniprogram')
   cloud = createMiniProgramWorkBuddyCloud({
@@ -12,6 +12,18 @@ function getCloud() {
     wx: createDiagnosticWx(wx)
   })
   return cloud
+}
+
+// ---------------- 本地自托管模式 ----------------
+let localCloud = null
+function getLocalCloud() {
+  if (!localCloud) localCloud = require('./local-client.js')
+  return localCloud
+}
+
+// 根据开关返回统一的后端门面（都暴露 database / auth / llm / storage）
+function getCloud() {
+  return USE_LOCAL ? getLocalCloud() : getWorkBuddyCloud()
 }
 
 // 统一的登录态读取。任何读写用户私有数据前必须先过这道门。
