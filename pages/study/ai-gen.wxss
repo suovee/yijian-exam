@@ -1,0 +1,161 @@
+.tabs {
+  display: flex;
+  background: #ffffff;
+  border-bottom: 2rpx solid #f1f3f5;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 24rpx 0;
+  font-size: 28rpx;
+  color: #4e5969;
+  position: relative;
+}
+
+.tab.on {
+  color: #1a6fd4;
+  font-weight: 500;
+}
+
+.tab.on::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 48rpx;
+  height: 6rpx;
+  margin-left: -24rpx;
+  border-radius: 3rpx;
+  background: #1a6fd4;
+}
+
+.field-label {
+  margin: 24rpx 0 16rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #1f2329;
+}
+
+.picker-line {
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  background: #f7f8fa;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.caret {
+  color: #8a8f99;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.chip {
+  padding: 10rpx 28rpx;
+  border-radius: 30rpx;
+  background: #f7f8fa;
+  color: #4e5969;
+  font-size: 26rpx;
+  margin: 0 16rpx 16rpx 0;
+}
+
+.chip.on {
+  background: #e8f1fc;
+  color: #1a6fd4;
+}
+
+.filter-bar {
+  padding: 20rpx 24rpx 4rpx;
+}
+
+.tip {
+  line-height: 1.7;
+  margin-top: 12rpx;
+}
+
+.tip2 {
+  margin-top: 20rpx;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.mt {
+  margin-top: 28rpx;
+}
+
+.btn-disabled {
+  opacity: 0.6;
+}
+
+.draft {
+  margin: 16rpx 24rpx;
+}
+
+.draft .tag {
+  margin-right: 12rpx;
+}
+
+.stem {
+  margin: 16rpx 0;
+  font-size: 30rpx;
+  line-height: 1.7;
+  color: #1f2329;
+}
+
+.opt-line {
+  display: flex;
+  align-items: flex-start;
+  padding: 6rpx 0;
+  font-size: 26rpx;
+  color: #4e5969;
+  line-height: 1.6;
+}
+
+.opt-key {
+  width: 40rpx;
+  flex-shrink: 0;
+  color: #1a6fd4;
+}
+
+.answer-line {
+  margin-top: 14rpx;
+}
+
+.keys {
+  font-weight: 500;
+  letter-spacing: 3rpx;
+  margin-left: 8rpx;
+}
+
+.analysis {
+  margin-top: 10rpx;
+  line-height: 1.6;
+}
+
+.acts {
+  margin-top: 24rpx;
+  padding-top: 20rpx;
+  border-top: 2rpx solid #f1f3f5;
+}
+
+.grow {
+  flex: 1;
+}
+
+.acts .btn-sm-ghost {
+  margin-left: 16rpx;
+}
+
+.empty-inline {
+  text-align: center;
+  color: #8a8f99;
+  padding: 40rpx 0;
+}

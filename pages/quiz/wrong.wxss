@@ -1,0 +1,52 @@
+.head {
+  margin-top: 20rpx;
+}
+
+.filter-bar {
+  padding: 0 24rpx 8rpx;
+}
+
+.chip {
+  display: inline-block;
+  padding: 10rpx 24rpx;
+  border-radius: 30rpx;
+  background: #ffffff;
+  color: #4e5969;
+  font-size: 26rpx;
+  border: 2rpx solid #e5e6eb;
+}
+
+.chip.on {
+  background: #e8f1fc;
+  color: #1a6fd4;
+  border-color: #b6d4f5;
+}
+
+.wrong-card {
+  margin: 16rpx 24rpx;
+}
+
+.meta .tag {
+  margin-right: 12rpx;
+}
+
+.stem {
+  margin: 18rpx 0;
+  font-size: 30rpx;
+  line-height: 1.7;
+  color: #1f2329;
+}
+
+.foot {
+  padding-top: 16rpx;
+  border-top: 2rpx solid #f1f3f5;
+}
+
+.foot .btn-sm-ghost + .btn-sm-ghost {
+  margin-left: 16rpx;
+}
+
+.danger-btn {
+  color: #d54941;
+  border-color: #f2b5b2;
+}

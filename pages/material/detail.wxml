@@ -1,0 +1,28 @@
+<view class="page">
+
+  <view wx:if="{{loading}}" class="empty">加载中…</view>
+
+  <block wx:if="{{!loading && m}}">
+    <view class="card">
+      <view class="row meta">
+        <text class="tag tag-primary">{{m.category}}</text>
+        <text wx:if="{{m.subject_code && m.subject_code !== 'common'}}" class="tag tag-gray">{{m.subject_code}}</text>
+      </view>
+      <view class="title big">{{m.title}}</view>
+      <view wx:if="{{m.description}}" class="body desc">{{m.description}}</view>
+      <view class="divider mid"></view>
+      <view class="kv"><text class="sub">类型</text><text>{{typeText}}</text></view>
+      <view class="kv"><text class="sub">大小</text><text>{{sizeText}}</text></view>
+      <view class="kv"><text class="sub">上传者</text><text>{{m.owner_name || '匿名'}}</text></view>
+      <view class="kv"><text class="sub">上传时间</text><text>{{when}}</text></view>
+      <view class="kv"><text class="sub">下载次数</text><text>{{m.download_count || 0}}</text></view>
+    </view>
+
+    <view class="card">
+      <view class="btn" bindtap="onOpen">{{busy ? '处理中…' : '打开 / 下载'}}</view>
+      <view class="sub tip">PDF、Word、Excel 会用微信的文档预览打开；图片直接全屏查看。</view>
+    </view>
+  </block>
+
+  <view class="page-bottom-space"></view>
+</view>

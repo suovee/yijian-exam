@@ -1,0 +1,78 @@
+.tip {
+  margin: 12rpx 0 24rpx;
+  line-height: 1.6;
+}
+
+.field-label {
+  margin: 28rpx 0 16rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #1f2329;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.chip {
+  padding: 10rpx 24rpx;
+  border-radius: 30rpx;
+  background: #f7f8fa;
+  color: #4e5969;
+  font-size: 26rpx;
+  margin: 0 16rpx 16rpx 0;
+}
+
+.chip.on {
+  background: #e8f1fc;
+  color: #1a6fd4;
+}
+
+.file-chosen {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background: #f0faf4;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+}
+
+.pick-row {
+  margin-top: 20rpx;
+}
+
+.pick-row .btn-ghost + .btn-ghost {
+  margin-left: 16rpx;
+}
+
+.mt {
+  margin-top: 32rpx;
+}
+
+.btn-disabled {
+  opacity: 0.6;
+}
+
+.item {
+  padding: 24rpx 28rpx;
+  background: #ffffff;
+  border-bottom: 2rpx solid #f1f3f5;
+}
+
+.title.small {
+  font-size: 28rpx;
+}
+
+.del {
+  color: #d54941;
+  font-size: 26rpx;
+  padding: 12rpx 16rpx;
+  flex-shrink: 0;
+}
+
+.empty-inline {
+  text-align: center;
+  color: #8a8f99;
+  padding: 40rpx 0;
+}

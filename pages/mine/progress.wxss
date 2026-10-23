@@ -1,0 +1,73 @@
+.total-card {
+  margin-top: 20rpx;
+}
+
+.stat-cell {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-num {
+  font-size: 44rpx;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.subject-row {
+  padding: 24rpx 28rpx;
+  background: #ffffff;
+  border-bottom: 2rpx solid #f1f3f5;
+}
+
+.bar {
+  margin-top: 14rpx;
+  height: 10rpx;
+  background: #f1f3f5;
+  border-radius: 5rpx;
+  overflow: hidden;
+}
+
+.bar-in {
+  height: 100%;
+  background: #00a870;
+  border-radius: 5rpx;
+}
+
+.sub2 {
+  margin-top: 10rpx;
+}
+
+.tabs {
+  display: flex;
+  background: #ffffff;
+  border-bottom: 2rpx solid #f1f3f5;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 26rpx;
+  color: #4e5969;
+}
+
+.tab.on {
+  color: #1a6fd4;
+  font-weight: 500;
+}
+
+.ch {
+  padding: 24rpx 28rpx;
+  background: #ffffff;
+  border-bottom: 2rpx solid #f1f3f5;
+}
+
+.title.small {
+  font-size: 28rpx;
+}
+
+.empty-inline {
+  text-align: center;
+  color: #8a8f99;
+  padding: 40rpx 0;
+}

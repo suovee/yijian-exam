@@ -1,0 +1,61 @@
+<view class="page">
+
+  <view wx:if="{{!logged}}" class="card">
+    <view class="empty-inline">上传后台需要登录。 <view class="btn-ghost mt" bindtap="goLogin">去登录</view></view>
+  </view>
+
+  <block wx:if="{{logged}}">
+    <view class="card">
+      <view class="title">上传新资料</view>
+      <view class="sub tip">上传后所有用户可见。支持 PDF / Word / Excel / PPT / 图片 / 压缩包。</view>
+
+      <view class="field-label">标题</view>
+      <input class="input" value="{{title}}" placeholder="例如：2026 一建经济精讲 第 1 章" maxlength="80" bindinput="onInputTitle"></input>
+
+      <view class="field-label">科目</view>
+      <view class="chips">
+        <view wx:for="{{subjectChips}}" wx:key="code"
+              class="chip {{subjectCode === item.code ? 'on' : ''}}"
+              data-code="{{item.code}}" bindtap="onPickSubject">{{item.name}}</view>
+      </view>
+
+      <view class="field-label">分类</view>
+      <view class="chips">
+        <view wx:for="{{categories}}" wx:key="*this"
+              class="chip {{category === item ? 'on' : ''}}"
+              data-c="{{item}}" bindtap="onPickCategory">{{item}}</view>
+      </view>
+
+      <view class="field-label">简介（可选）</view>
+      <textarea class="textarea" value="{{description}}" placeholder="一句话说明这份资料适合什么阶段用" maxlength="300" bindinput="onInputDesc"></textarea>
+
+      <view class="field-label">文件</view>
+      <view wx:if="{{fileName}}" class="file-chosen">
+        <view class="grow">
+          <view>{{fileName}}</view>
+          <view class="sub">{{sizeText}} · {{fileExt}}</view>
+        </view>
+      </view>
+      <view class="row pick-row">
+        <view class="btn-ghost grow" bindtap="onChooseFile">选文件（聊天里的）</view>
+        <view class="btn-ghost grow" bindtap="onChooseImage">选图片</view>
+      </view>
+
+      <view class="btn mt {{uploading ? 'btn-disabled' : ''}}" bindtap="onSubmit">{{uploading ? '上传中…' : '上传并发布'}}</view>
+    </view>
+
+    <view class="section-title">我上传的（{{mine.length}}）</view>
+    <view wx:if="{{mine.length === 0}}" class="empty">还没有上传过</view>
+    <view class="card-flat">
+      <view wx:for="{{mine}}" wx:key="id" class="row-between item">
+        <view class="col grow">
+          <view class="title small">{{item.title}}</view>
+          <view class="sub">{{item.category}} · {{item.sizeText}} · {{item.when}}</view>
+        </view>
+        <view class="del" data-id="{{item.id}}" bindtap="onDelete">删除</view>
+      </view>
+    </view>
+  </block>
+
+  <view class="page-bottom-space"></view>
+</view>

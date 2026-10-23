@@ -1,0 +1,127 @@
+.today-card {
+  margin-top: 20rpx;
+}
+
+.today-card .btn {
+  margin-top: 28rpx;
+}
+
+.btn-disabled {
+  background: #e5e6eb;
+  color: #8a8f99;
+}
+
+.stat-row {
+  margin-top: 28rpx;
+  padding-top: 24rpx;
+  border-top: 2rpx solid #f1f3f5;
+}
+
+.stat-cell {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-num {
+  font-size: 40rpx;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.month-nav {
+  margin-bottom: 20rpx;
+}
+
+.nav-btn {
+  width: 64rpx;
+  height: 64rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 32rpx;
+  background: #f7f8fa;
+  color: #4e5969;
+  font-size: 32rpx;
+}
+
+.week-row {
+  display: flex;
+  margin-bottom: 12rpx;
+}
+
+.week-cell {
+  flex: 1;
+  text-align: center;
+  font-size: 24rpx;
+  color: #8a8f99;
+}
+
+.day-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.day-cell {
+  width: 14.28%;
+  height: 84rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8rpx;
+}
+
+.day-num {
+  width: 64rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  text-align: center;
+  border-radius: 32rpx;
+  font-size: 26rpx;
+  color: #4e5969;
+}
+
+.d-blank {
+  visibility: hidden;
+}
+
+.d-checked .day-num {
+  background: #e3f6ec;
+  color: #00a870;
+}
+
+.d-today .day-num {
+  background: #1a6fd4;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.legend {
+  margin-top: 16rpx;
+  justify-content: flex-end;
+}
+
+.legend .sub {
+  margin-right: 20rpx;
+  font-size: 22rpx;
+}
+
+.dot {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 10rpx;
+  margin-right: 8rpx;
+}
+
+.dot-on {
+  background: #e3f6ec;
+  border: 2rpx solid #00a870;
+}
+
+.dot-today {
+  background: #1a6fd4;
+}
+
+.empty-inline {
+  text-align: center;
+  color: #8a8f99;
+  padding: 40rpx 0;
+}

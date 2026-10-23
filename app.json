@@ -1,0 +1,57 @@
+{
+  "pages": [
+    "pages/material/index",
+    "pages/material/detail",
+    "pages/material/admin",
+    "pages/study/index",
+    "pages/study/notes",
+    "pages/study/note-edit",
+    "pages/study/ai-gen",
+    "pages/quiz/index",
+    "pages/quiz/practice",
+    "pages/quiz/result",
+    "pages/quiz/exam-list",
+    "pages/quiz/exam",
+    "pages/quiz/exam-report",
+    "pages/quiz/wrong",
+    "pages/quiz/wrong-detail",
+    "pages/quiz/correction",
+    "pages/quiz/stats",
+    "pages/mine/index",
+    "pages/mine/progress",
+    "pages/mine/checkin"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#1a6fd4",
+    "navigationBarTitleText": "一建备考",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f4f6f9"
+  },
+  "tabBar": {
+    "color": "#8a8f99",
+    "selectedColor": "#1a6fd4",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/material/index",
+        "text": "资料"
+      },
+      {
+        "pagePath": "pages/study/index",
+        "text": "学习"
+      },
+      {
+        "pagePath": "pages/quiz/index",
+        "text": "题库"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

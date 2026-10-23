@@ -1,0 +1,44 @@
+<view class="page">
+
+  <view class="card head">
+    <view class="row-between">
+      <view>
+        <view class="title">错题集</view>
+        <view class="sub">还有 {{pending}} 道没有掌握，每一次错选都留着</view>
+      </view>
+      <view class="btn-sm" bindtap="goPractice">错题重做</view>
+    </view>
+  </view>
+
+  <view class="filter-bar">
+    <view class="chip {{onlyUnmastered ? 'on' : ''}}" bindtap="onToggleFilter">
+      {{onlyUnmastered ? '只看未掌握' : '显示全部'}}
+    </view>
+  </view>
+
+  <view wx:if="{{loading}}" class="empty">加载中…</view>
+  <view wx:if="{{!loading && list.length === 0}}" class="empty">
+    这里还很干净。<view class="sub">做错的题会自动进来</view>
+  </view>
+
+  <view wx:for="{{list}}" wx:key="wrongId" class="card wrong-card" data-id="{{item.id}}" data-sid="{{item.sid}}" bindtap="openDetail">
+    <view class="row-between meta">
+      <view class="row">
+        <text class="tag tag-gray">{{item.typeText}}</text>
+        <text class="tag tag-primary">{{item.subjectName}}</text>
+        <text wx:if="{{item.hasOverride}}" class="tag tag-warn">已更正</text>
+      </view>
+      <view class="sub">错 {{item.wrong_count || item.wrongCount}} 次</view>
+    </view>
+    <view class="stem">{{item.brief}}</view>
+    <view class="row-between foot">
+      <view class="sub">{{item.lastText}}</view>
+      <view class="row">
+        <view class="btn-sm-ghost" data-id="{{item.id}}" catchtap="markMastered">已掌握</view>
+        <view class="btn-sm-ghost danger-btn" data-id="{{item.id}}" catchtap="removeWrong">移出</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-bottom-space"></view>
+</view>

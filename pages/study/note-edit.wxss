@@ -1,0 +1,98 @@
+.field-label {
+  margin: 28rpx 0 16rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #1f2329;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.field-label-row {
+  margin: 28rpx 0 16rpx;
+}
+
+.picker-line {
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  background: #f7f8fa;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.caret {
+  color: #8a8f99;
+  font-size: 32rpx;
+}
+
+.imgs {
+  flex-wrap: wrap;
+}
+
+.img-box {
+  width: 180rpx;
+  height: 180rpx;
+  margin: 0 16rpx 16rpx 0;
+  position: relative;
+  border-radius: 12rpx;
+  overflow: hidden;
+  background: #f7f8fa;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+}
+
+.img-del {
+  position: absolute;
+  right: 8rpx;
+  top: 8rpx;
+  width: 44rpx;
+  height: 44rpx;
+  line-height: 40rpx;
+  text-align: center;
+  border-radius: 22rpx;
+  background: rgba(0, 0, 0, 0.55);
+  color: #ffffff;
+  font-size: 28rpx;
+}
+
+.img-box.add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8a8f99;
+  font-size: 48rpx;
+  border: 2rpx dashed #d0d5dd;
+}
+
+.mt {
+  margin-top: 24rpx;
+}
+
+.grow {
+  flex: 1;
+}
+
+.grow + .grow {
+  margin-left: 16rpx;
+}
+
+.btn-disabled {
+  opacity: 0.6;
+}
+
+.disabled {
+  opacity: 0.6;
+}
+
+.danger-btn {
+  color: #d54941;
+  border-color: #f2b5b2;
+}

@@ -1,0 +1,25 @@
+<view class="page">
+  <view class="card hero">
+    <view class="sub">{{modeText}} · 本轮完成 {{answered}} / {{total}} 题</view>
+    <view class="score-row">
+      <view class="score primary">{{rate}}<text class="pct">%</text></view>
+      <view class="col score-side">
+        <view class="success">答对 {{correct}}</view>
+        <view class="danger">答错 {{wrong}}</view>
+      </view>
+    </view>
+    <view class="body comment">{{comment}}</view>
+  </view>
+
+  <view class="card">
+    <view class="title">接下来</view>
+    <view class="mt sub">错题已经进错题集，每一次你选了哪几项都完整留着，点开就能逐次回放。</view>
+    <view class="row mt">
+      <view class="btn grow" bindtap="goWrong">去重做错题</view>
+    </view>
+    <view class="row mt">
+      <view class="btn-ghost grow" bindtap="redo">再来一轮</view>
+      <view class="btn-ghost grow" bindtap="goHome">回到题库</view>
+    </view>
+  </view>
+</view>

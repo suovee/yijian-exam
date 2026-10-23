@@ -1,0 +1,82 @@
+<view class="page">
+
+  <view wx:if="{{!logged}}" class="card">
+    <view class="empty-inline">AI 出题需要登录。<view class="btn-ghost mt" bindtap="goLogin">去登录</view></view>
+  </view>
+
+  <block wx:if="{{logged}}">
+    <view class="tabs">
+      <view class="tab {{tab === 'generate' ? 'on' : ''}}" data-tab="generate" bindtap="onTab">生成题目</view>
+      <view class="tab {{tab === 'drafts' ? 'on' : ''}}" data-tab="drafts" bindtap="onTab">草稿箱</view>
+    </view>
+
+    <!-- 生成 -->
+    <block wx:if="{{tab === 'generate'}}">
+      <view class="card">
+        <view class="field-label">选一个知识点</view>
+        <block wx:if="{{notes.length}}">
+          <picker mode="selector" range="{{noteNames}}" value="{{noteIndex}}" bindchange="onNoteChange">
+            <view class="picker-line">{{noteNames[noteIndex]}}<text class="caret">›</text></view>
+          </picker>
+        </block>
+        <view wx:else class="sub tip">还没有知识点。<view class="btn-sm-ghost mt" bindtap="goNotes">去整理一个</view></view>
+
+        <view class="field-label">生成数量</view>
+        <view class="chips">
+          <view class="chip {{count === 3 ? 'on' : ''}}" data-n="3" bindtap="onCount">3 题</view>
+          <view class="chip {{count === 5 ? 'on' : ''}}" data-n="5" bindtap="onCount">5 题</view>
+          <view class="chip {{count === 10 ? 'on' : ''}}" data-n="10" bindtap="onCount">10 题</view>
+        </view>
+
+        <view class="field-label">题型</view>
+        <view class="chips">
+          <view class="chip {{qtype === 'single' ? 'on' : ''}}" data-t="single" bindtap="onType">单选题</view>
+          <view class="chip {{qtype === 'multi' ? 'on' : ''}}" data-t="multi" bindtap="onType">多选题</view>
+        </view>
+
+        <view class="btn mt {{generating ? 'btn-disabled' : ''}}" bindtap="onGenerate">{{generating ? 'AI 命题中…' : '开始生成'}}</view>
+        <view class="sub tip2">生成的题目先进草稿箱，你逐题确认后才会进入公共题库，避免错题污染题库。</view>
+      </view>
+    </block>
+
+    <!-- 草稿箱 -->
+    <block wx:if="{{tab === 'drafts'}}">
+      <view class="filter-bar">
+        <view class="chip {{filter === 'pending' ? 'on' : ''}}" data-f="pending" bindtap="onFilter">待确认</view>
+        <view class="chip {{filter === 'approved' ? 'on' : ''}}" data-f="approved" bindtap="onFilter">已入题库</view>
+        <view class="chip {{filter === 'rejected' ? 'on' : ''}}" data-f="rejected" bindtap="onFilter">已废弃</view>
+        <view class="chip {{filter === 'all' ? 'on' : ''}}" data-f="all" bindtap="onFilter">全部</view>
+      </view>
+
+      <view wx:if="{{draftsLoading}}" class="empty">加载中…</view>
+      <view wx:if="{{!draftsLoading && drafts.length === 0}}" class="empty">这里没有草稿</view>
+
+      <view wx:for="{{drafts}}" wx:key="id" class="card draft">
+        <view class="row-between">
+          <view class="row">
+            <text class="tag {{item.qtype === '多选' ? 'tag-warn' : 'tag-primary'}}">{{item.qtype}}</text>
+            <text class="tag tag-gray">{{item.subjectCode || '未分科'}}</text>
+            <text wx:if="{{item.status === 'approved'}}" class="tag tag-success">{{item.statusText}}</text>
+            <text wx:if="{{item.status === 'rejected'}}" class="tag tag-danger">{{item.statusText}}</text>
+          </view>
+          <view class="sub">{{item.when}}</view>
+        </view>
+
+        <view class="stem">{{item.stem}}</view>
+        <view wx:for="{{item.options}}" wx:for-item="opt" wx:key="key" class="opt-line">
+          <text class="opt-key">{{opt.key}}</text>
+          <text>{{opt.text}}</text>
+        </view>
+        <view class="sub answer-line">答案 <text class="keys primary">{{item.answerText}}</text></view>
+        <view wx:if="{{item.analysis}}" class="sub analysis">{{item.analysis}}</view>
+
+        <view wx:if="{{item.status === 'pending'}}" class="row acts">
+          <view class="btn-sm grow" data-id="{{item.id}}" bindtap="onApprove">通过，入题库</view>
+          <view class="btn-sm-ghost grow" data-id="{{item.id}}" bindtap="onReject">废弃</view>
+        </view>
+      </view>
+    </block>
+  </block>
+
+  <view class="page-bottom-space"></view>
+</view>

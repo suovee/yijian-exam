@@ -1,0 +1,50 @@
+.hero {
+  margin-top: 24rpx;
+  text-align: center;
+  padding: 48rpx 28rpx;
+}
+
+.score-row {
+  margin-top: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.score {
+  font-size: 108rpx;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.pct {
+  font-size: 40rpx;
+  margin-left: 4rpx;
+}
+
+.score-side {
+  margin-left: 40rpx;
+  text-align: left;
+  font-size: 28rpx;
+  line-height: 1.8;
+}
+
+.comment {
+  margin-top: 24rpx;
+}
+
+.grow {
+  flex: 1;
+}
+
+.mt {
+  margin-top: 24rpx;
+}
+
+.row {
+  display: flex;
+}
+
+.row > view + view {
+  margin-left: 16rpx;
+}

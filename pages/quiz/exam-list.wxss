@@ -1,0 +1,23 @@
+.head {
+  margin-top: 20rpx;
+}
+
+.picker {
+  margin: 24rpx 0;
+}
+
+.picker slider {
+  margin: 0;
+}
+
+.paper {
+  padding: 28rpx;
+  background: #ffffff;
+  border-bottom: 2rpx solid #f1f3f5;
+}
+
+.arrow {
+  color: #c0c4cc;
+  font-size: 36rpx;
+  padding-left: 16rpx;
+}

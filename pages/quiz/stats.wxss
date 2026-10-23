@@ -1,0 +1,92 @@
+.total {
+  margin-top: 20rpx;
+}
+
+.stat-cell {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-num {
+  font-size: 44rpx;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.tabs {
+  display: flex;
+  background: #ffffff;
+  border-bottom: 2rpx solid #f1f3f5;
+  padding: 0 12rpx;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 24rpx 0;
+  font-size: 28rpx;
+  color: #4e5969;
+  position: relative;
+}
+
+.tab.on {
+  color: #1a6fd4;
+  font-weight: 500;
+}
+
+.tab.on::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 40rpx;
+  height: 6rpx;
+  margin-left: -20rpx;
+  border-radius: 3rpx;
+  background: #1a6fd4;
+}
+
+.subject-row {
+  padding: 24rpx 28rpx;
+  background: #ffffff;
+  border-bottom: 2rpx solid #f1f3f5;
+}
+
+.bar {
+  margin-top: 16rpx;
+  height: 10rpx;
+  background: #f1f3f5;
+  border-radius: 5rpx;
+  overflow: hidden;
+}
+
+.bar-in {
+  height: 100%;
+  background: #00a870;
+  border-radius: 5rpx;
+}
+
+.pg, .ex, .fv {
+  padding: 24rpx 28rpx;
+  background: #ffffff;
+  border-bottom: 2rpx solid #f1f3f5;
+}
+
+.title.small {
+  font-size: 28rpx;
+}
+
+.ex .tag {
+  margin-left: 16rpx;
+}
+
+.fv .tag {
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.arrow {
+  color: #c0c4cc;
+  font-size: 36rpx;
+  padding-left: 16rpx;
+}

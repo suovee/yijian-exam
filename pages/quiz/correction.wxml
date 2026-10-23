@@ -1,0 +1,77 @@
+<view class="page">
+
+  <view wx:if="{{loading}}" class="empty">加载中…</view>
+
+  <!-- 列表形态：所有已提交的更正 -->
+  <block wx:if="{{!loading && shape === 'list'}}">
+    <view class="card tip-card">
+      <view class="title">题目更正</view>
+      <view class="sub">公共题库谁都不能直接改。你对某道题的答案有意见时提交更正，采纳后只在自己账号生效，别人看到的还是原题。</view>
+    </view>
+
+    <view wx:if="{{list.length === 0}}" class="empty">还没有人提交过更正</view>
+
+    <view wx:for="{{list}}" wx:key="id" class="card corr">
+      <view class="row-between">
+        <view class="sub">{{item.from}} · {{item.when}}</view>
+        <view class="tag tag-primary">改后答案 {{item.answerText}}</view>
+      </view>
+      <view class="brief">{{item.brief}}</view>
+      <view wx:if="{{item.reason}}" class="sub reason">理由：{{item.reason}}</view>
+    </view>
+  </block>
+
+  <!-- 详情形态：编辑并提交针对这道题的更正 -->
+  <block wx:if="{{!loading && shape === 'detail' && question}}">
+    <view class="card">
+      <view class="row meta">
+        <text class="tag {{isMulti ? 'tag-warn' : 'tag-primary'}}">{{isMulti ? '多选题' : '单选题'}}</text>
+        <text class="tag tag-gray">原答案 {{origAnswerText}}</text>
+      </view>
+      <view class="stem">{{question.stem}}</view>
+    </view>
+
+    <view class="card">
+      <view class="title">你认为的正确答案</view>
+      <view class="sub pick-tip">{{isMulti ? '可多选' : '单选题只能选一个'}}</view>
+      <view wx:for="{{optionsView}}" wx:key="key"
+            class="opt {{item.checked ? 'on' : ''}}"
+            data-key="{{item.key}}" bindtap="onToggleKey">
+        <view class="opt-key">{{item.key}}</view>
+        <view class="grow">{{item.text}}</view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="title">更正后的解析</view>
+      <textarea class="textarea mt" value="{{analysis}}" placeholder="写清楚为什么这个答案才对，方便以后复习" maxlength="1500" bindinput="onInputAnalysis"></textarea>
+      <view class="title mt">更正理由</view>
+      <input class="input mt" value="{{reason}}" placeholder="一句话说明，例如：教材第 3 版已改" maxlength="120" bindinput="onInputReason"></input>
+    </view>
+
+    <view class="card">
+      <view class="title">已经提交的更正</view>
+      <view wx:if="{{list.length === 0}}" class="sub mt">还没有人改过这道题</view>
+      <view wx:for="{{list}}" wx:key="id" class="corr-row">
+        <view class="row-between">
+          <view class="row">
+            <text class="tag tag-primary">{{item.answerText}}</text>
+            <text wx:if="{{item.adopted}}" class="tag tag-success">已采纳</text>
+          </view>
+          <view class="sub">{{item.from}} · {{item.when}}</view>
+        </view>
+        <view wx:if="{{item.new_analysis}}" class="sub analysis-text">{{item.new_analysis}}</view>
+        <view wx:if="{{!item.adopted}}" class="btn-sm-ghost adopt" data-cid="{{item.id}}" bindtap="onAdoptRow">采纳到我的题库</view>
+      </view>
+    </view>
+
+    <view class="page-bottom-space"></view>
+
+    <view class="fixed-bottom">
+      <view wx:if="{{hasOverride}}" class="row">
+        <view class="btn-ghost grow" bindtap="onCancelAdopt">取消采纳，恢复原题</view>
+      </view>
+      <view wx:else class="btn" bindtap="onAdoptMyEdit">提交并采纳（只对我生效）</view>
+    </view>
+  </block>
+</view>

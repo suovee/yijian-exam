@@ -1,0 +1,95 @@
+.tip-card .sub {
+  margin-top: 12rpx;
+  line-height: 1.7;
+}
+
+.corr {
+  margin: 16rpx 24rpx;
+}
+
+.brief {
+  margin: 16rpx 0;
+  font-size: 30rpx;
+  line-height: 1.7;
+  color: #1f2329;
+}
+
+.reason {
+  line-height: 1.6;
+}
+
+.meta .tag {
+  margin-right: 12rpx;
+}
+
+.stem {
+  margin-top: 16rpx;
+  font-size: 32rpx;
+  line-height: 1.75;
+  color: #1f2329;
+}
+
+.pick-tip {
+  margin: 8rpx 0 20rpx;
+}
+
+.opt {
+  display: flex;
+  align-items: flex-start;
+  padding: 22rpx;
+  border: 2rpx solid #e5e6eb;
+  border-radius: 12rpx;
+  margin-bottom: 16rpx;
+  font-size: 28rpx;
+  color: #4e5969;
+  line-height: 1.6;
+}
+
+.opt.on {
+  border-color: #1a6fd4;
+  background: #f5f9ff;
+}
+
+.opt-key {
+  width: 44rpx;
+  height: 44rpx;
+  line-height: 42rpx;
+  text-align: center;
+  border: 2rpx solid #d0d5dd;
+  border-radius: 50%;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.opt.on .opt-key {
+  background: #1a6fd4;
+  border-color: #1a6fd4;
+  color: #ffffff;
+}
+
+.corr-row {
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #f1f3f5;
+}
+
+.analysis-text {
+  margin-top: 12rpx;
+  line-height: 1.6;
+}
+
+.adopt {
+  margin-top: 16rpx;
+}
+
+.mt {
+  margin-top: 20rpx;
+}
+
+.grow {
+  flex: 1;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}

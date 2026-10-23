@@ -1,0 +1,97 @@
+<view class="page">
+
+  <view wx:if="{{loading}}" class="empty">正在加载题目…</view>
+
+  <block wx:if="{{!loading && total === 0}}">
+    <view class="empty">这个范围还没有题目。<view class="sub">可以去上传后台导入真题，或先练习别的章节。</view></view>
+  </block>
+
+  <block wx:if="{{!loading && cur}}">
+
+    <!-- 顶部进度 -->
+    <view class="topbar">
+      <view class="row-between">
+        <view class="sub">{{title}} · {{subjectName}}{{chapterName ? ' · ' + chapterName : ''}}</view>
+        <view class="sub">{{index + 1}} / {{total}}</view>
+      </view>
+      <view class="bar"><view class="bar-in" style="width: {{((index + 1) / total) * 100}}%"></view></view>
+    </view>
+
+    <!-- 题干 -->
+    <view class="card stem-card">
+      <view class="row meta-line">
+        <text class="tag {{isMulti ? 'tag-warn' : 'tag-primary'}}">{{isMulti ? '多选题' : '单选题'}}</text>
+        <text class="tag tag-gray">难度 {{cur.difficulty}}</text>
+        <text wx:if="{{cur.source === 'ai'}}" class="tag tag-success">AI 生成</text>
+        <text wx:if="{{cur.source === 'real'}}" class="tag tag-danger">真题</text>
+        <text wx:if="{{cur.hasOverride}}" class="tag tag-warn">已按你的更正判题</text>
+      </view>
+      <view class="stem">{{cur.stem}}</view>
+      <view wx:if="{{attempts > 0}}" class="sub attempt-hint">这道题你之前答过 {{attempts}} 次</view>
+    </view>
+
+    <!-- 选项 -->
+    <view class="card-flat">
+      <view wx:for="{{optionsView}}" wx:key="key"
+            class="option opt-{{item.state}}"
+            data-key="{{item.key}}" bindtap="onToggleOption">
+        <view class="opt-key">{{item.key}}</view>
+        <view class="grow opt-text">{{item.text}}</view>
+        <view wx:if="{{item.state === 'right'}}" class="opt-mark success">✓</view>
+        <view wx:if="{{item.state === 'bad'}}" class="opt-mark danger">✗</view>
+        <view wx:if="{{item.state === 'missed'}}" class="opt-mark warn">漏</view>
+      </view>
+    </view>
+
+    <!-- 解析 -->
+    <view wx:if="{{revealed}}" class="card analysis">
+      <view class="row-between">
+        <view class="title {{lastCorrect ? 'success' : 'danger'}}">{{lastCorrect ? '回答正确' : '回答错误'}}</view>
+        <view class="sub">参考答案 {{answerText}}</view>
+      </view>
+
+      <view wx:if="{{wrongText}}" class="diff-line danger">错选：<text class="diff-keys">{{wrongText}}</text>（不该选的你选了）</view>
+      <view wx:if="{{missedText}}" class="diff-line warn">漏选：<text class="diff-keys">{{missedText}}</text>（该选的你没选）</view>
+
+      <view class="divider mid"></view>
+      <view class="body analysis-body">{{cur.effectiveAnalysis || '这道题还没有解析，你可以提交一份。'}}</view>
+
+      <view class="row assistant">
+        <view class="btn-sm-ghost" bindtap="onHistory">查看历次作答</view>
+        <view class="btn-sm-ghost" bindtap="onCorrect">更正答案 / 解析</view>
+        <view class="btn-sm-ghost" bindtap="onFavorite">{{favorited ? '取消收藏' : '收藏'}}</view>
+      </view>
+    </view>
+
+    <view class="page-bottom-space"></view>
+
+    <!-- 底部操作 -->
+    <view class="fixed-bottom">
+      <view class="row-between">
+        <view class="btn-ghost half" wx:if="{{index > 0}}" bindtap="goPrev">上一题</view>
+        <view class="btn-ghost half" bindtap="onOpenCard">答题卡 {{answeredCount}}/{{total}}</view>
+        <view class="btn" bindtap="onMainAction">
+          {{revealed ? (index >= total - 1 ? '查看结果' : '下一题') : (selected.length ? '确定作答' : '请选择答案')}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 答题卡 -->
+    <view wx:if="{{showCard}}" class="mask" bindtap="onOpenCard">
+      <view class="sheet" catchtap="noop">
+        <view class="row-between sheet-head">
+          <view class="title">答题卡</view>
+          <view class="sub" bindtap="onOpenCard">收起</view>
+        </view>
+        <scroll-view scroll-y class="sheet-body">
+          <view class="card-grid">
+            <view wx:for="{{card}}" wx:key="*this" wx:for-index="i"
+                  class="cell c-{{item}} {{i === index ? 'cur' : ''}}"
+                  data-i="{{i}}" bindtap="onPickIndex">{{i + 1}}</view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+
+  </block>
+</view>

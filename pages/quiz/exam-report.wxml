@@ -1,0 +1,52 @@
+<view class="page">
+
+  <view wx:if="{{loading}}" class="empty">正在判卷…</view>
+
+  <block wx:if="{{!loading && session}}">
+    <view class="card hero">
+      <view class="sub">{{session.title}}</view>
+      <view class="row score-row">
+        <view class="score primary">{{summary.score}}</view>
+        <view class="sub slash">/ {{summary.full}}</view>
+      </view>
+      <view class="row-between info">
+        <view class="col">
+          <view class="success">答对 {{summary.correctCount}} / {{summary.total}}</view>
+          <view class="sub">正确率 {{summary.rate}}%</view>
+        </view>
+        <view class="col right">
+          <view class="primary">用时 {{summary.tookText}}</view>
+          <view class="sub">合格线 {{summary.pass}} 分</view>
+        </view>
+      </view>
+      <view wx:if="{{auto}}" class="sub auto-tip">考试时间到，已自动交卷。</view>
+    </view>
+
+    <view class="section-title">逐题回顾</view>
+    <view wx:if="{{review.length === 0}}" class="empty">这份卷子没有题目</view>
+
+    <view wx:for="{{review}}" wx:key="id" class="card item" data-id="{{item.id}}" data-sid="{{item.sid}}" bindtap="openDetail">
+      <view class="row-between">
+        <view class="row">
+          <text class="seq">{{item.no}}</text>
+          <text class="tag {{item.state === 'right' ? 'tag-success' : (item.state === 'partial' ? 'tag-warn' : 'tag-danger')}}">{{item.stateText}}</text>
+        </view>
+        <view class="sub">{{item.pointsText}}</view>
+      </view>
+      <view class="brief">{{item.brief}}</view>
+      <view class="row-between answer-row">
+        <view class="sub">你选 <text class="keys {{item.state === 'right' ? 'success' : 'danger'}}">{{item.pickedText}}</text></view>
+        <view class="sub">答案 <text class="keys primary">{{item.answerText}}</text></view>
+      </view>
+      <view wx:if="{{item.wrongText}}" class="sub danger">错选 {{item.wrongText}}</view>
+      <view wx:if="{{item.missedText}}" class="sub warn">漏选 {{item.missedText}}</view>
+    </view>
+
+    <view class="page-bottom-space"></view>
+    <view class="fixed-bottom">
+      <view class="row">
+        <view class="btn-ghost grow" bindtap="goHome">回到题库</view>
+      </view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,44 @@
+.hero {
+  margin-top: 20rpx;
+}
+
+.title.big {
+  font-size: 40rpx;
+  font-weight: 600;
+}
+
+.tip {
+  margin: 16rpx 0 28rpx;
+  line-height: 1.7;
+}
+
+.act-row .btn + .btn-ghost,
+.act-row .btn-ghost + .btn-ghost {
+  margin-left: 16rpx;
+}
+
+.note {
+  padding: 28rpx;
+  background: #ffffff;
+  border-bottom: 2rpx solid #f1f3f5;
+}
+
+.arrow {
+  color: #c0c4cc;
+  font-size: 36rpx;
+  padding-left: 16rpx;
+}
+
+.mt {
+  margin-top: 24rpx;
+}
+
+.grow {
+  flex: 1;
+}
+
+.empty-inline {
+  text-align: center;
+  color: #8a8f99;
+  padding: 40rpx 0;
+}

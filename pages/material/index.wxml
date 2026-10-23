@@ -1,0 +1,44 @@
+<view class="page">
+
+  <view class="filter-wrap">
+    <scroll-view scroll-x="{{true}}" class="chips">
+      <view class="chip-inner">
+        <view wx:for="{{subjectChips}}" wx:key="code"
+              class="chip {{subjectCode === item.code ? 'on' : ''}}"
+              data-code="{{item.code}}" bindtap="onPickSubject">{{item.name}}</view>
+      </view>
+    </scroll-view>
+    <view class="cats">
+      <view wx:for="{{categories}}" wx:key="*this"
+            class="cat {{category === item ? 'on' : ''}}"
+            data-c="{{item}}" bindtap="onPickCategory">{{item}}</view>
+    </view>
+    <view class="search row">
+      <input class="input grow" value="{{keyword}}" placeholder="搜资料标题"
+             confirm-type="search" bindconfirm="onSearch" bindinput="onInputKeyword"></input>
+      <view class="btn-sm" bindtap="onSearch">搜索</view>
+    </view>
+  </view>
+
+  <view wx:if="{{loading}}" class="empty">加载中…</view>
+  <view wx:if="{{!loading && list.length === 0}}" class="empty">
+    还没有资料。<view class="sub">点右下角按钮，把讲义、真题传上来</view>
+  </view>
+
+  <view wx:for="{{list}}" wx:key="id" class="card mat" data-id="{{item.id}}" bindtap="openDetail">
+    <view class="row-between">
+      <view class="row">
+        <text class="tag tag-primary">{{item.category}}</text>
+        <text wx:if="{{item.subject_code && item.subject_code !== 'common'}}" class="tag tag-gray">{{item.subject_code}}</text>
+      </view>
+      <view class="sub">{{item.sizeText}} · {{item.when}}</view>
+    </view>
+    <view class="mat-title">{{item.title}}</view>
+    <view wx:if="{{item.description}}" class="sub desc">{{item.description}}</view>
+    <view class="sub">来自 {{item.from}} · 下载 {{item.download_count || 0}} 次</view>
+  </view>
+
+  <view class="page-bottom-space"></view>
+
+  <view class="fab" bindtap="goAdmin">上传</view>
+</view>

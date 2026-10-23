@@ -1,0 +1,145 @@
+<view class="page">
+
+  <!-- 科目切换 -->
+  <scroll-view class="subj-bar" scroll-x="{{true}}" enable-flex="{{true}}">
+    <view class="subj-inner">
+      <view wx:for="{{subjects}}" wx:key="code"
+            class="subj-item {{item.code === activeSubject ? 'on' : ''}}"
+            data-code="{{item.code}}" bindtap="onSwitchSubject">
+        {{item.name}}
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 今日概览 -->
+  <view class="card stat-card">
+    <view class="row-between">
+      <view class="stat-cell">
+        <view class="stat-num primary">{{stats.answered}}</view>
+        <view class="sub">累计答题</view>
+      </view>
+      <view class="stat-cell">
+        <view class="stat-num success">{{stats.correct}}</view>
+        <view class="sub">答对</view>
+      </view>
+      <view class="stat-cell">
+        <view class="stat-num danger">{{stats.wrong}}</view>
+        <view class="sub">错题待清</view>
+      </view>
+      <view class="stat-cell">
+        <view class="stat-num">{{stats.rate}}%</view>
+        <view class="sub">正确率</view>
+      </view>
+    </view>
+    <view wx:if="{{needLogin}}" class="login-tip" bindtap="goMine">还未登录，答题记录不会保存，点我去「我的」登录</view>
+  </view>
+
+  <!-- 首次把内置题写入云端 -->
+  <view wx:if="{{showSync}}" class="card sync-card">
+    <view class="title">初始化题库</view>
+    <view class="sub sync-desc">内置 32 道原创模拟题需要先写入云端公共题库，写入后才能统一查询，也能正常记录你的每一次作答轨迹。</view>
+    <view class="btn {{syncing ? 'btn-disabled' : ''}}" bindtap="onSyncStarter">{{syncing ? '写入中…' : '一键写入云端题库'}}</view>
+  </view>
+
+  <!-- 专项练习 -->
+  <view class="section-title">专项练习</view>
+  <view class="card-flat">
+    <view class="row-between entry" data-round="1" bindtap="goRound">
+      <view class="col grow">
+        <view class="title">第一轮练习</view>
+        <view class="sub">按教材顺序通刷，答完即出解析</view>
+      </view>
+      <view class="arrow">›</view>
+    </view>
+    <view class="divider"></view>
+    <view class="row-between entry" data-round="2" bindtap="goRound">
+      <view class="col grow">
+        <view class="title">第二轮练习</view>
+        <view class="sub">只刷未掌握和做过的题，强化巩固</view>
+      </view>
+      <view class="arrow">›</view>
+    </view>
+  </view>
+
+  <!-- 整卷测试 -->
+  <view class="section-title">整卷测试</view>
+  <view class="card-flat">
+    <view class="row-between entry" data-type="mock" bindtap="goExamList">
+      <view class="col grow">
+        <view class="title">模拟考试</view>
+        <view class="sub">限时整卷，交卷后统一看成绩</view>
+      </view>
+      <view class="arrow">›</view>
+    </view>
+    <view class="divider"></view>
+    <view class="row-between entry" data-type="real" bindtap="goExamList">
+      <view class="col grow">
+        <view class="title">历年真题</view>
+        <view class="sub">真题卷按年份排列，需先在上传后台导入</view>
+      </view>
+      <view class="arrow">›</view>
+    </view>
+  </view>
+
+  <!-- 章节练习 -->
+  <view class="section-title">章节练习 · {{activeSubjectName}}</view>
+  <view class="card-flat">
+    <block wx:for="{{chapterList}}" wx:key="code">
+      <view class="row-between group" data-code="{{item.code}}" bindtap="onToggleGroup">
+        <view class="row grow">
+          <view class="caret {{expanded[item.code] ? 'open' : ''}}">›</view>
+          <view class="grow">
+            <view class="title">{{item.name}}</view>
+            <view class="sub">{{item.count}} 个小节</view>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{expanded[item.code]}}" class="kid-wrap">
+        <view wx:for="{{item.children}}" wx:for-item="kid" wx:key="code"
+              class="row-between kid" data-code="{{kid.code}}" bindtap="goChapter">
+          <view class="grow kid-name">{{kid.name}}</view>
+          <view class="arrow">›</view>
+        </view>
+      </view>
+      <view class="divider"></view>
+    </block>
+  </view>
+
+  <!-- 个人题库 -->
+  <view class="section-title">我的题库</view>
+  <view class="card-flat">
+    <view class="row-between entry" bindtap="goWrong">
+      <view class="col grow">
+        <view class="title">错题集 <text class="tag tag-danger">{{stats.wrong}}</text></view>
+        <view class="sub">保留每一次选错的项，可逐次回放</view>
+      </view>
+      <view class="arrow">›</view>
+    </view>
+    <view class="divider"></view>
+    <view class="row-between entry" bindtap="goCorrections">
+      <view class="col grow">
+        <view class="title">题目更正</view>
+        <view class="sub">对答案有异议可提交更正，采纳后只对本人生效</view>
+      </view>
+      <view class="arrow">›</view>
+    </view>
+    <view class="divider"></view>
+    <view class="row-between entry" bindtap="goFavorite">
+      <view class="col grow">
+        <view class="title">我的收藏</view>
+        <view class="sub">书签题与知识点</view>
+      </view>
+      <view class="arrow">›</view>
+    </view>
+    <view class="divider"></view>
+    <view class="row-between entry" bindtap="goStats">
+      <view class="col grow">
+        <view class="title">学习统计</view>
+        <view class="sub">分科进度、正确率、考试记录</view>
+      </view>
+      <view class="arrow">›</view>
+    </view>
+  </view>
+
+  <view class="page-bottom-space"></view>
+</view>

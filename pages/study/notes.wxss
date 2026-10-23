@@ -1,0 +1,73 @@
+.filter-wrap {
+  background: #ffffff;
+  padding: 16rpx 24rpx;
+  border-bottom: 2rpx solid #f1f3f5;
+}
+
+.chips {
+  white-space: nowrap;
+}
+
+.chip-inner {
+  display: inline-flex;
+}
+
+.chip {
+  padding: 12rpx 24rpx;
+  border-radius: 30rpx;
+  background: #f7f8fa;
+  color: #4e5969;
+  font-size: 26rpx;
+  margin-right: 16rpx;
+}
+
+.chip.on {
+  background: #e8f1fc;
+  color: #1a6fd4;
+}
+
+.note-card {
+  margin: 16rpx 24rpx;
+}
+
+.note-card .tag {
+  margin-right: 12rpx;
+}
+
+.note-title {
+  margin: 16rpx 0 8rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #1f2329;
+}
+
+.brief {
+  line-height: 1.6;
+}
+
+.fab {
+  position: fixed;
+  right: 40rpx;
+  bottom: calc(60rpx + env(safe-area-inset-bottom));
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 55rpx;
+  background: #1a6fd4;
+  color: #ffffff;
+  font-size: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(26, 111, 212, 0.4);
+  z-index: 20;
+}
+
+.mt {
+  margin-top: 24rpx;
+}
+
+.empty-inline {
+  text-align: center;
+  color: #8a8f99;
+  padding: 40rpx 0;
+}

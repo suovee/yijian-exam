@@ -1,0 +1,61 @@
+<view class="page">
+
+  <view wx:if="{{!logged}}" class="card">
+    <view class="empty-inline">先在「我的」页面登录，才有学习进度</view>
+  </view>
+
+  <block wx:if="{{logged}}">
+    <view class="card total-card">
+      <view class="row-between">
+        <view class="stat-cell">
+          <view class="stat-num primary">{{total.answered}}</view>
+          <view class="sub">累计答题</view>
+        </view>
+        <view class="stat-cell">
+          <view class="stat-num success">{{total.correct}}</view>
+          <view class="sub">答对</view>
+        </view>
+        <view class="stat-cell">
+          <view class="stat-num">{{total.rate}}%</view>
+          <view class="sub">正确率</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="section-title">分科目进度</view>
+    <view class="card-flat">
+      <view wx:for="{{subjectsView}}" wx:key="code" class="subject-row">
+        <view class="row-between">
+          <view class="title">{{item.name}}</view>
+          <view class="sub">{{item.answered}} 题 · {{item.rate}}%</view>
+        </view>
+        <view class="bar"><view class="bar-in" style="width: {{item.width}}%"></view></view>
+        <view class="sub sub2">满分 {{item.full}} · 合格 {{item.pass}}</view>
+      </view>
+    </view>
+
+    <view class="section-title">章节进度</view>
+    <view class="tabs">
+      <view wx:for="{{subjectsView}}" wx:key="code"
+            class="tab {{item.code === activeSubject ? 'on' : ''}}"
+            data-code="{{item.code}}" bindtap="onSwitchSubject">{{item.code}}</view>
+    </view>
+    <view class="card-flat">
+      <view wx:if="{{chapterView.length === 0}}" class="empty">这个科目还没有章节</view>
+      <view wx:for="{{chapterView}}" wx:key="code" class="row-between ch">
+        <view class="col grow">
+          <view class="title small">{{item.code}} {{item.name}}</view>
+          <view class="sub">已练 {{item.done}} 题 · 答对 {{item.right}} 题</view>
+        </view>
+        <view wx:if="{{item.done > 0}}" class="tag {{item.rate >= 80 ? 'tag-success' : (item.rate >= 60 ? 'tag-warn' : 'tag-danger')}}">{{item.rate}}%</view>
+        <view wx:else class="tag tag-gray">未开始</view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="btn-ghost" bindtap="goPractice">继续去题库练习</view>
+    </view>
+  </block>
+
+  <view class="page-bottom-space"></view>
+</view>

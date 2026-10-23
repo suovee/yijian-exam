@@ -1,0 +1,108 @@
+.meta .tag {
+  margin-right: 12rpx;
+}
+
+.stem {
+  margin-top: 16rpx;
+  font-size: 32rpx;
+  line-height: 1.75;
+  color: #1f2329;
+}
+
+.opt-line {
+  display: flex;
+  align-items: flex-start;
+  padding: 10rpx 0;
+  font-size: 28rpx;
+  color: #4e5969;
+  line-height: 1.6;
+}
+
+.opt-key {
+  width: 44rpx;
+  height: 44rpx;
+  line-height: 42rpx;
+  text-align: center;
+  border: 2rpx solid #d0d5dd;
+  border-radius: 50%;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+  color: #4e5969;
+}
+
+.divider.mid {
+  margin: 24rpx 0;
+}
+
+.answer {
+  font-weight: 500;
+  letter-spacing: 4rpx;
+}
+
+.analysis {
+  margin-top: 16rpx;
+  line-height: 1.8;
+}
+
+.attempt {
+  margin: 16rpx 24rpx;
+}
+
+.seq {
+  font-size: 28rpx;
+  font-weight: 500;
+  margin-right: 16rpx;
+}
+
+.picked {
+  margin-top: 16rpx;
+  font-size: 28rpx;
+  color: #4e5969;
+}
+
+.keys {
+  color: #1f2329;
+  font-weight: 500;
+  letter-spacing: 4rpx;
+}
+
+.diff-title {
+  margin-top: 20rpx;
+  font-size: 26rpx;
+}
+
+.diff-row {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 12rpx;
+  padding: 14rpx 16rpx;
+  background: #fafbfc;
+  border-radius: 10rpx;
+  font-size: 26rpx;
+  color: #4e5969;
+  line-height: 1.6;
+}
+
+.badge {
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  border-radius: 6rpx;
+  color: #ffffff;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.badge-bad {
+  background: #d54941;
+}
+
+.badge-miss {
+  background: #d98026;
+}
+
+.tip {
+  margin: 12rpx 0 24rpx;
+  line-height: 1.6;
+}

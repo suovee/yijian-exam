@@ -1,0 +1,43 @@
+<view class="page">
+
+  <view class="card">
+    <view class="field-label">标题</view>
+    <input class="input" value="{{title}}" placeholder="例如：名义利率与有效利率的换算" maxlength="60" bindinput="onInputTitle"></input>
+
+    <view class="field-label">科目</view>
+    <picker mode="selector" range="{{subjectNames}}" value="{{subjectIndex}}" bindchange="onSubjectChange">
+      <view class="picker-line">{{subjectNames[subjectIndex]}}<text class="caret">›</text></view>
+    </picker>
+
+    <view class="field-label">章节</view>
+    <picker mode="selector" range="{{chapterNames}}" value="{{chapterIndex}}" bindchange="onChapterChange">
+      <view class="picker-line">{{chapterNames[chapterIndex] || '请先选科目'}}<text class="caret">›</text></view>
+    </picker>
+
+    <view class="row-between field-label-row">
+      <view class="field-label no-margin">正文（自由编辑）</view>
+      <view class="btn-sm-ghost {{recognizing ? 'disabled' : ''}}" bindtap="onRecognize">{{recognizing ? '识别中…' : '拍照识别教材'}}</view>
+    </view>
+    <textarea class="textarea" value="{{content}}" placeholder="把教材上的内容敲进来，或点右上角拍照自动识别"
+              maxlength="4000" bindinput="onInputContent"></textarea>
+
+    <view class="field-label">配图（最多 3 张）</view>
+    <view class="row imgs">
+      <view wx:for="{{images}}" wx:key="*this" class="img-box">
+        <image class="img" src="{{item}}" mode="aspectFill" data-i="{{index}}" bindtap="onPreviewImage"></image>
+        <view class="img-del" data-i="{{index}}" catchtap="onRemoveImage">×</view>
+      </view>
+      <view wx:if="{{images.length < 3}}" class="img-box add" bindtap="onAddImage">＋</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="btn {{saving ? 'btn-disabled' : ''}}" bindtap="onSave">{{saving ? '保存中…' : (isNew ? '保存知识点' : '更新知识点')}}</view>
+    <view wx:if="{{!isNew}}" class="row mt">
+      <view class="btn-ghost grow" bindtap="onGen">用这个知识点生成题目</view>
+      <view class="btn-ghost grow danger-btn" bindtap="onDelete">删除</view>
+    </view>
+  </view>
+
+  <view class="page-bottom-space"></view>
+</view>

@@ -1,0 +1,33 @@
+.meta .tag {
+  margin-right: 12rpx;
+}
+
+.title.big {
+  margin-top: 16rpx;
+  font-size: 36rpx;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.desc {
+  margin-top: 16rpx;
+  line-height: 1.8;
+}
+
+.divider.mid {
+  margin: 24rpx 0;
+}
+
+.kv {
+  display: flex;
+  justify-content: space-between;
+  padding: 12rpx 0;
+  font-size: 28rpx;
+  color: #4e5969;
+}
+
+.tip {
+  margin-top: 20rpx;
+  text-align: center;
+  line-height: 1.6;
+}

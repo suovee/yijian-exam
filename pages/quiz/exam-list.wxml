@@ -1,0 +1,40 @@
+<view class="page">
+
+  <view class="card head">
+    <view class="row-between">
+      <view>
+        <view class="title">{{title}}</view>
+        <view class="sub">{{subjectName}} · 满分 {{fullScore}} 分 · {{examMinutes}} 分钟</view>
+      </view>
+      <view class="btn-sm-ghost" bindtap="goHistory">历史成绩</view>
+    </view>
+  </view>
+
+  <view class="section-title">随机组卷</view>
+  <view class="card">
+    <view class="sub">云端本科目现有 {{available}} 道题，抽其中一部分组成一份卷子。</view>
+    <view class="row picker">
+      <view class="sub">抽题数量</view>
+      <slider class="grow" min="5" max="{{available || 20}}" value="{{pickCount}}" show-value="{{true}}" bindchanging="onCountChange" bindchange="onCountChange"></slider>
+    </view>
+    <view class="btn" bindtap="startQuick">开始考试</view>
+  </view>
+
+  <view class="section-title">已有试卷</view>
+  <view wx:if="{{loading}}" class="empty">加载中…</view>
+  <view wx:if="{{!loading && papers.length === 0}}" class="empty">
+    还没有预设试卷。<view class="sub">真题卷需要在「资料」后台导入，导入后会出现在这里。</view>
+  </view>
+
+  <view class="card-flat">
+    <view wx:for="{{papers}}" wx:key="id" class="row-between paper" data-id="{{item.id}}" bindtap="startPaper">
+      <view class="col grow">
+        <view class="title">{{item.title}}</view>
+        <view class="sub">{{item.yearText}}{{item.yearText ? ' · ' : ''}}{{item.count}} 题 · {{item.minutes}} 分钟</view>
+      </view>
+      <view class="arrow">›</view>
+    </view>
+  </view>
+
+  <view class="page-bottom-space"></view>
+</view>

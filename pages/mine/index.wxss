@@ -1,0 +1,53 @@
+.user-card {
+  margin-top: 20rpx;
+}
+
+.avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 48rpx;
+  background: #1a6fd4;
+  color: #ffffff;
+  font-size: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+}
+
+.user-info {
+  align-items: flex-start;
+}
+
+.streak-row {
+  margin-top: 24rpx;
+}
+
+.streak-row .tag {
+  margin-right: 16rpx;
+}
+
+.center {
+  align-items: center;
+  text-align: center;
+}
+
+.tip {
+  margin: 16rpx 0 32rpx;
+  line-height: 1.7;
+}
+
+.login-btn {
+  width: 100%;
+}
+
+.entry {
+  padding: 28rpx;
+  background: #ffffff;
+}
+
+.arrow {
+  color: #c0c4cc;
+  font-size: 36rpx;
+  padding-left: 16rpx;
+}

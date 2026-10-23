@@ -1,0 +1,16 @@
+# ---- 微信开发者工具构建产物（由"构建 npm"自动生成，无需提交）----
+miniprogram_npm/
+node_modules/
+package-lock.json
+
+# ---- WorkBuddy 本地记忆/缓存（含会话级 memory，不入库）----
+.workbuddy/
+
+# ---- 系统/编辑器垃圾文件 ----
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+
+# ---- 本地私密配置（如有，请勿提交）----
+project.private.config.json
